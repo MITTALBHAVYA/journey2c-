@@ -1,0 +1,47 @@
+{
+	"folders": [
+		{
+			"path": "..\\c journey"
+		},
+		{
+			"path": "..\\solidity journey"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\HTML"
+		},
+		{
+			"path": "..\\2hourhtml"
+		},
+		{
+			"path": "..\\webdevelopmentjourney"
+		},
+		{
+			"path": "../pythonjourney"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"fibonacci.C": "cpp",
+			"SUMOFFACSERIES.C": "cpp",
+			"stdio.h": "c",
+			"conio.h": "c",
+			"basicadd.C": "cpp",
+			"iostream": "cpp",
+			"ostream": "cpp",
+			"cmath": "cpp"
+		},
+		"liveServer.settings.multiRootWorkspaceName": "webdevelopmentjourney",
+		"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+		"prettier.bracketSameLine": true,
+		"C_Cpp.autocompleteAddParentheses": true,
+		"better-comments.highlightPlainText": true
+	},
+	"extensions": {
+		"recommendations": [
+			"bracketpaircolordlw.bracket-pair-color-dlw"
+		]
+	}
+}
