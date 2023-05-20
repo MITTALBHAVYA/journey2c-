@@ -37,7 +37,8 @@
 		"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 		"prettier.bracketSameLine": true,
 		"C_Cpp.autocompleteAddParentheses": true,
-		"better-comments.highlightPlainText": true
+		"better-comments.highlightPlainText": true,
+		"cph.general.defaultLanguage": ""
 	},
 	"extensions": {
 		"recommendations": [
