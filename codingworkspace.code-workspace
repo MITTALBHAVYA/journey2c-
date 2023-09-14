@@ -38,7 +38,8 @@
 		"prettier.bracketSameLine": true,
 		"C_Cpp.autocompleteAddParentheses": true,
 		"better-comments.highlightPlainText": true,
-		"cph.general.defaultLanguage": ""
+		"cph.general.defaultLanguage": "",
+		"cph.general.onceMaintainerMessage": false
 	},
 	"extensions": {
 		"recommendations": [
