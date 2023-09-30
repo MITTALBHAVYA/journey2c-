@@ -34,7 +34,9 @@
 			"basicadd.C": "cpp",
 			"iostream": "cpp",
 			"ostream": "cpp",
-			"cmath": "cpp"
+			"cmath": "cpp",
+			"string": "cpp",
+			"mangoesandgardern": "cpp"
 		},
 		"liveServer.settings.multiRootWorkspaceName": "webdevelopmentjourney",
 		"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
