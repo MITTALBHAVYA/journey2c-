@@ -1,0 +1,19 @@
+n= int(input())
+stocks=[]
+for i in range(n):
+    stocks.append(list(map(int,input().split())))
+m=int(input())
+rates=[]
+for i in range(n):
+    rates.append(list(map(int,input().split())))
+x=int(input())
+relized_p_l=0
+unrelized_p_l=0
+for i in range(n):
+    if(stocks[i][1]>x):
+        continue
+    if(stocks[i][2]>x or stocks[i][2]==0):
+        unrelized_p_l+=(max(rates[i][stocks[i][1] -1:x])-(rates[i][stocks[i][1] -1]))*stocks[i][0]
+    else:
+        relized_p_l+=((rates[i][stocks[i][2] -1])-(rates[i][stocks[i][1] -1]))*stocks[i][0]
+print(relized_p_l,unrelized_p_l,sep='\n',end='')

@@ -1,0 +1,19 @@
+def min_shifts_to_gather_arts(n, row):
+    counts = {'H': 0, 'S': 0, 'P': 0, 'D': 0}
+    shifts = 0
+
+    for art in row:
+        counts[art] += 1
+
+    for art in ['H', 'S', 'P', 'D']:
+        shifts += n - counts[art]
+
+    return shifts
+
+# Read input
+n = int(input())
+row = input().strip()
+
+# Calculate and print the result
+result = min_shifts_to_gather_arts(n, row)
+print(result)

@@ -1,0 +1,16 @@
+def max_points(chocolates, initial_chocolates):
+    chocolates.sort(reverse=True)  # Sort bags of chocolates in descending order
+    points = 1  # Initial points
+    for bag in chocolates:
+        if bag >= initial_chocolates:
+            points += 1  # Gain a point if chocolates in bag are more or equal
+            initial_chocolates += bag  # Update the chocolates Bittu has
+        else:
+            break  # Ignore the bag if chocolates are fewer
+    return points
+
+# Example usage:
+chocolates_list = list(map(int, input().split()))  # Input list of chocolates
+initial_chocolates = int(input())  # Initial chocolates Bittu has
+result = max_points(chocolates_list, initial_chocolates)
+print(result)

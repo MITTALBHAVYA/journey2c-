@@ -1,0 +1,23 @@
+n = int(input())
+stocks = []
+for _ in range(n):
+    a, b, c = map(int, input().split())
+    stocks.append((a, b, c))
+
+m = int(input())
+real = 0
+unreal = 0
+placementlelo = []
+for i in range(n):
+    arr = [int(i) for i in input().split()]
+    placementlelo.append(arr)
+
+day = int(input())
+for i in range(n):
+    a, b, c = stocks[i]
+    if b > day: continue
+    elif c > day or not c: unreal += a * (placementlelo[i][day - 1] - placementlelo[i][b - 1])
+    else: real += a * (placementlelo[i][c - 1] - placementlelo[i][b - 1])
+
+print(real)
+print(unreal)

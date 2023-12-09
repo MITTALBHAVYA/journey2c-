@@ -1,0 +1,43 @@
+def calculate_efficiency(numbers, priorities):
+  """
+  Calculates the efficiency of a set of numbers with assigned priorities.
+
+  Args:
+      numbers: A list of integers.
+      priorities: A list of integers representing the priorities assigned to the numbers.
+
+  Returns:
+      The efficiency, which is the sum of all numbers multiplied by their respective priorities.
+  """
+  efficiency = 0
+  for i, number in enumerate(numbers):
+    priority = priorities[i]
+    efficiency += number * priority
+  return efficiency
+
+def maximize_efficiency(numbers):
+  """
+  Finds the maximum efficiency that Chintu can achieve by selecting numbers and assigning priorities.
+
+  Args:
+      numbers: A list of integers.
+
+  Returns:
+      The maximum efficiency.
+  """
+  max_efficiency = 0
+  # Iterate through all possible combinations of numbers and priorities
+  for k in range(1, len(numbers) + 1):
+    for chosen_numbers in itertools.combinations(numbers, k):
+      # Assign priorities from 1 to k for the chosen numbers
+      priorities = range(1, k + 1)
+      efficiency = calculate_efficiency(chosen_numbers, priorities)
+      max_efficiency = max(max_efficiency, efficiency)
+  return max_efficiency
+
+# Read input
+numbers = list(map(int, input().split()))
+
+# Calculate and print the maximum efficiency
+max_efficiency = maximize_efficiency(numbers)
+print(max_efficiency)

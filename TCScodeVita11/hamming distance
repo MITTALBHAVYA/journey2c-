@@ -1,0 +1,60 @@
+from typing import List
+
+def minimum_cost(strings: List[str], A: int, B: int) -> List[int]:
+    result = []
+    for string in strings:
+        zero_count = string.count('0')
+        one_count = string.count('1')
+        two_count = string.count('2')
+
+        if two_count == 0:
+            total_cost = zero_count * A + one_count * B
+            min_hamming_distance = len(string) - total_cost // min(A, 😎
+        else:
+            min_hamming_distance = len(string) + 1
+            total_cost = float('inf')
+
+            for _ in range(min(zero_count, one_count), -1, -1):
+                swap_count = min(zero_count, one_count) - _
+                current_cost = zero_count * A + one_count * B + 2 * swap_count * A + 2 * _ * B
+                current_hamming_distance = len(string) - current_cost // min(A, 😎
+
+                if current_hamming_distance < min_hamming_distance or (current_hamming_distance == min_hamming_distance and current_cost < total_cost):
+                    min_hamming_distance = current_hamming_distance
+                    total_cost = current_cost
+
+        result.append(min_hamming_distance)
+    return result
+
+def validate_input(strings: List[str], A: int, B: int) -> bool:
+    for string in strings:
+        if any(digit not in "012" for digit in string):
+            return False
+        if not 1 <= len(string) <= 55:
+            return False
+        if not 1 <= A <= 55:
+            return False
+        if not 1 <= B <= 55:
+            return False
+    return True
+
+def main() -> None:
+    T = int(input())
+    strings = []
+    values = []
+
+    for _ in range(T):
+        string = input()
+        A, B = map(int, input().split())
+        strings.append(string)
+        values.append((A, B))
+
+    if validate_input(strings, *values):
+        results = minimum_cost(strings, *values)
+        for result in results:
+            print(result)
+    else:
+        print("INVALID")
+
+if name == "__main__":
+    main()

@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string toggle(const string& num) {
+    string result = "";
+    for (char bit : num) {
+        if (bit == '0') {
+            result += '1';
+        } else {
+            result += '0';
+        }
+    }
+    return result;
+}
+
+pair<int, vector<int>> getMaxSum(vector<int>& arr, int k) {
+    auto maxIt = max_element(arr.begin(), arr.end());
+    int maxVal = *maxIt;
+    
+    int maxIndex = distance(arr.begin(), maxIt);
+    
+    int left = max(0, maxIndex - k);
+    int right = min(static_cast<int>(arr.size()) - 1, maxIndex + k);
+
+    vector<int> selected(arr.begin() + left, arr.begin() + maxIndex + 1);
+    selected.insert(selected.end(), arr.begin() + maxIndex, arr.begin() + right + 1);
+
+    arr.erase(remove_if(arr.begin(), arr.end(),
+                        [&selected](int x) { return find(selected.begin(), selected.end(), x) != selected.end(); }),
+              arr.end());
+
+    return {accumulate(selected.begin(), selected.end(), 0), arr};
+}
+
+int main() {
+    vector<int> arr;
+    int temp;
+    while (cin >> temp) {
+        arr.push_back(temp);
+    }
+
+    string A1, B1, A2, B2;
+    cin >> A1 >> B1 >> A2 >> B2;
+
+    int k;
+    cin >> k;
+
+    int sum1 = 0, sum2 = 0;
+
+    while (!arr.empty()) {
+        auto [s1, newArr] = getMaxSum(arr, k);
+        sum1 += s1;
+
+        if (arr.empty()) {
+            break;
+        }
+
+        auto [s2, newArr2] = getMaxSum(newArr, k);
+        sum2 += s2;
+
+        arr = newArr2;
+    }
+
+    if (sum1 > sum2) {
+        A1 = toggle(A1);
+        B2 = toggle(B2);
+    } else {
+        A2 = toggle(A2);
+        B1 = toggle(B1);
+    }
+
+    int x1 = static_cast<int>((bitset<32>(A1) ^ bitset<32>(B1)).to_ulong());
+int x2 = static_cast<int>((bitset<32>(A2) ^ bitset<32>(B2)).to_ulong());
+
+
+    if (x1 > x2) {
+        cout << "Rahul";
+    } else if (x2 > x1) {
+        cout << "Rupesh";
+    } else {
+        cout << "both";
+    }
+
+    return 0;
+}
