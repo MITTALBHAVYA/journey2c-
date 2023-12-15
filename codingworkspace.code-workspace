@@ -1,31 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "..\\c journey"
-		},
-		{
-			"path": "..\\solidity journey"
-		},
-		{
 			"path": "."
-		},
-		{
-			"path": "..\\HTML"
-		},
-		{
-			"path": "..\\2hourhtml"
-		},
-		{
-			"path": "..\\webdevelopmentjourney"
-		},
-		{
-			"path": "../pythonjourney"
-		},
-		{
-			"path": "../nodejs journey"
-		},
-		{
-			"path": "../BhavyaCompiler"
 		}
 	],
 	"settings": {
