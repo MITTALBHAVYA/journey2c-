@@ -29,30 +29,20 @@ bool isSafe(vector<vector<int>> &arr, int x, int y, int n) {
     return true;
 }
 
-bool nQueen(vector<vector<int>> &arr, int x, int n) {
+int totalSolutions = 0;
+
+void nQueenCount(vector<vector<int>> &arr, int x, int n) {
     if (x >= n) {
-        return true;
+        totalSolutions++;
+        return;
     }
 
     for (int col = 0; col < n; col++) {
         if (isSafe(arr, x, col, n)) {
             arr[x][col] = 1;
-
-            if (nQueen(arr, x + 1, n)) {
-                return true;
-            }
+            nQueenCount(arr, x + 1, n);
             arr[x][col] = 0;
         }
-    }
-    return false;
-}
-
-void printSolution(const vector<vector<int>> &arr) {
-    for (const auto &row : arr) {
-        for (int val : row) {
-            cout << val << " ";
-        }
-        cout << endl;
     }
 }
 
@@ -63,12 +53,9 @@ int main() {
 
     vector<vector<int>> arr(n, vector<int>(n, 0));
 
-    if (nQueen(arr, 0, n)) {
-        cout << "Solution exists:" << endl;
-        printSolution(arr);
-    } else {
-        cout << "Solution does not exist." << endl;
-    }
+    nQueenCount(arr, 0, n);
+
+    cout << "Total solutions for " << n << "-Queens problem: " << totalSolutions << endl;
 
     return 0;
 }

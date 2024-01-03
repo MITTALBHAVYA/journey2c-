@@ -3,43 +3,31 @@
 #define mod 1000000007
 using namespace std;
 void solve(){
-  int n,k;
-  cin>>n>>k;
-  string str;
-  cin>>str;
-  unordered_map<char,int>mp;
-  for(int i=0;i<n;i++)
+  ll n;
+  cin>>n;
+  ll ones=0;
+  ll zeros=0;
+  for(ll i=0;i<n;i++)
   {
-    mp[str[i]]++;
-  }
-  int diff=n-k;
-  if(diff%2!=0)
-  {
-    diff--;
-  }
-  for(auto i:mp)
-  {
-    if(i.second>1)
+    ll x;
+    cin>>x;
+    if(x==0)
     {
-      if(i.second%2==0)
-      {
-        diff=diff-i.second;
-      }
-      else
-      {
-        diff=diff-(i.second-1);
-      }
+      zeros++;
+    }
+    else
+    {
+      ones++;
     }
   }
-  if(diff==0 || diff<0)
+  if(ones==0 || zeros==0)
   {
-    cout<<"YES"<<endl;
+    cout<<0<<endl;
   }
   else
   {
-    cout<<"NO"<<endl;
+    cout<<min(ones,zeros)<<endl;
   }
-
 }
 int main()
 {
