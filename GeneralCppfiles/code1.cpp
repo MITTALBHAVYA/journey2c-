@@ -3,28 +3,24 @@
 #define mod 1000000007
 using namespace std;
 void solve(){
-  ll n,x,y;
-  cin>>n>>x>>y;
-  ll ycon=y/3;
-  ll count=0;
-  ll xcon=0;
-  if(ycon>x){
-    xcon=x;
+  string s;
+  cin>>s;
+  int a=0;
+  int b=0;
+  for(int i=0;i<5;i++){
+    if(s[i]=='A'){
+        a++;
+    }
+    else{
+        b++;
+    }
+  }
+  if(a>b){
+    cout<<"A"<<endl;
   }
   else{
-    xcon=ycon;
+    cout<<"B"<<endl;
   }
-  count=xcon;
-  ll xleft=x-xcon;
-  ll xlar=xleft/2;
-  count+=xlar;
-  if(count>=n){
-    cout<<"YES"<<endl;
-  }
-  else{
-    cout<<"NO"<<endl;
-  }
-
 }
 int main()
 {

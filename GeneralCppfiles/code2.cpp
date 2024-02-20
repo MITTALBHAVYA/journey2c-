@@ -3,39 +3,19 @@
 #define mod 1000000007
 using namespace std;
 void solve(){
-  ll n;
-  cin>>n;
-  vector<ll>a(n);
-  vector<ll>b(n);
-  ll prev=0;
-  for(ll i=0;i<n;i++){
-    cin>>a[i];
-  }
-  for(ll i=0;i<n;i++){
-    cin>>b[i];
-  }
-  sort(a.begin(),a.end());
-  sort(b.begin(),b.end(),greater<ll>());
-  bool flag=0;
-  for(ll i=0;i<n-1;i++){
-    if(a[i]+b[i]!=a[i+1]+b[i+1]){
-        flag=1;
-        break;
+ ll n, m;
+    cin >> n >> m;
+    m = n - m + 1;
+    ll ans = 0;
+    for (ll b = 30; b >= 0; b--) {
+        ll click = (n / (1 << b)) - ans;
+        ans += click;
+        if (ans >= m) {
+            ll i = (ans - m + 1);
+            cout << (1 << b) * ((2 * i) - 1) << '\n';
+            return;
+        }
     }
-  }
-  if(!flag){
-    for(auto i :a){
-        cout<<i<<" ";
-    }
-    cout<<endl;
-    for(auto i : b){
-        cout<<i<<" ";
-    }
-    cout<<endl;
-  }
-  else{
-    cout<<-1<<endl;
-  }
 }
 int main()
 {

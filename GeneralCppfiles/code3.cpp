@@ -1,48 +1,36 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define mod 1000000007
+ 
+#define int long long
 using namespace std;
-void solve(){
-  ll n,x;
-  cin>>n>>x;
-  if(n==1 || n==2){
-    if(x>0){
-        cout<<-1<<endl;
-    }
-    else{
-        if(n==1)
-        {cout<<1<<endl;}
-        else{
-            cout<<1<<" "<<2<<endl;
-        }
-    }
-  }
-  else
-  {
-    if(x>n-2){
-        cout<<-1<<endl;
-    }
-    else
-    {
-        for(ll i=n;i>=x+2;i--){
-            cout<<i<<" ";
-        }
-        for(ll i=1;i<x+2;i++){
-            cout<<i<<" ";
-        }
-        cout<<endl;
-    }
-  }
-}
-int main()
+ 
+const int N = 2e5+9;
+int a[N];
+ 
+int n;
+ 
+void sieve()
 {
-  ios::sync_with_stdio(0);
-   cin.tie(0);
-  int test;
-  cin>>test;
-  while(test--)
-  {
-    solve();
-  }
- return 0;
+    for (int i = 1; i <= 200001; ++i)
+    {
+        int r = 0;
+        int d = i;
+        while(d)
+        {
+            r += d%10;
+            d /= 10;
+        }
+        a[i] = a[i-1] + r;
+    }
+}
+ 
+signed main()
+{
+    sieve();
+    int t = 1;
+    cin>>t;
+    while (t--)
+    {
+        cin>>n;
+        cout<<a[n]<<'\n';
+    }
 }
