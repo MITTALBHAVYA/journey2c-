@@ -50,7 +50,6 @@ int main() {
     int n;
     cout << "Enter the number of Queens: ";
     cin >> n;
-
     vector<vector<int>> arr(n, vector<int>(n, 0));
 
     nQueenCount(arr, 0, n);
@@ -59,3 +58,4 @@ int main() {
 
     return 0;
 }
+//1,0,0,2,10,4,40,92,352
