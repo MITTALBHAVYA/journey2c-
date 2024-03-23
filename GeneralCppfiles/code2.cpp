@@ -3,19 +3,26 @@
 #define mod 1000000007
 using namespace std;
 void solve(){
- ll n, m;
-    cin >> n >> m;
-    m = n - m + 1;
-    ll ans = 0;
-    for (ll b = 30; b >= 0; b--) {
-        ll click = (n / (1 << b)) - ans;
-        ans += click;
-        if (ans >= m) {
-            ll i = (ans - m + 1);
-            cout << (1 << b) * ((2 * i) - 1) << '\n';
-            return;
-        }
+  ll n;
+  cin>>n;
+  string str;
+  cin>>str;
+  ll count=0;
+  for(ll i=0;i<n-2;i++){
+    if(str[i]==str[i+1]&&str[i+1]==str[i+2]){
+      continue;
     }
+    else{
+      count++;
+    }
+  }
+  ll extra=0;
+  for(ll i=0;i<n-3;i++){
+    if(str[i]==str[i+1] && str[i+1]==str[i+3] && str[i]!=str[i+2]){
+      extra++;
+    }
+  }
+  cout<<count-extra<<endl;
 }
 int main()
 {

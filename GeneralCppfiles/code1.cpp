@@ -3,24 +3,29 @@
 #define mod 1000000007
 using namespace std;
 void solve(){
-  string s;
-  cin>>s;
-  int a=0;
-  int b=0;
-  for(int i=0;i<5;i++){
-    if(s[i]=='A'){
-        a++;
+  ll n;
+  cin>>n;
+  vector<ll>arr(n);
+  ll count=0;
+  ll adjCount=0;
+  for(ll i=1;i<=n;i++){
+    cin>>arr[i-1];
+    if(i==arr[i-1]){
+      count++;
+    }
+  }
+  ll start=0;
+  while(start<n){
+    if(start+1<n && arr[start]==start+1 && arr[start+1]==start+2){
+      adjCount++;
+      start+=2;
     }
     else{
-        b++;
+      start++;
     }
   }
-  if(a>b){
-    cout<<"A"<<endl;
-  }
-  else{
-    cout<<"B"<<endl;
-  }
+  cout<<count-adjCount<<endl;
+
 }
 int main()
 {
