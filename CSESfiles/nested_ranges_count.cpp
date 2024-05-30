@@ -1,64 +1,53 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-#define int long long
-#define endl '\n'
-
-map<int,int> mp;
-const int N = 2e5+1;
-int T[N+1]={0};
-void update(int n, int x, int val){
-    for(;x<=n; x+=x&-x) T[x]+=val;
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;   
+#include <ext/pb_ds/assoc_container.hpp> 
+#include <ext/pb_ds/tree_policy.hpp> 
+using namespace __gnu_pbds; 
+  
+#define ordered_set tree<pair<int,int>, null_type,less<pair<int,int>>, rb_tree_tag,tree_order_statistics_node_update> 
+bool cmp(pair<ll,pair<ll,ll>>&a,pair<ll,pair<ll,ll>>&b){
+    if(a.second.first==b.second.first){
+        return a.second.second>b.second.second;
+    }
+    return a.second.first<b.second.first;
 }
-int query(int x){
-    int s=0;
-    for(;x>0;x-=x&-x) s+=T[x];
-    return s;
-}
-
-bool comp(pair<pair<int,int>,int> a, pair<pair<int,int>,int> b) {
-    if (a.first.first == b.first.first)
-        return a.first.second > b.first.second;
-    return a.first.first < b.first.first;
-}
-
-signed main(){
-    ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-    int n; 
-    cin>>n;
-    set<int> b;
-    vector<pair<pair<int,int>, int>> v(n);
-    for (int i = 0; i < n; i++) {
-        int x, y; cin>>x>>y;
-        v[i].second = i;
-        v[i].first = {x, y};
-        b.insert(y);
-    }
-    int cnt = 0;
-    for (auto i: b) {
-        mp[i] = ++cnt;
-    }
-    sort(v.begin(), v.end(), comp);
-    update(cnt, mp[v[n-1].first.second], 1);
-    int ans[n] = {0};
-    for (int i = n-2; i >= 0; i--) {
-        ans[v[i].second] += query(mp[v[i].first.second]);
-        update(cnt, mp[v[i].first.second], 1);
-    }
-
-    for (int i = 0; i < n; i++)
-        cout<<ans[i]<<' ';
-
-    memset(ans, 0, sizeof ans);
-    memset(T, 0, sizeof T);
-    update(cnt, 1, 1);
-    update(cnt, mp[v[0].first.second] + 1, -1);
-    for (int i = 1; i < n; i++) {
-        ans[v[i].second] += query(mp[v[i].first.second]);
-        update(cnt, 1, 1);
-        update(cnt, mp[v[i].first.second] + 1, -1);
-    }
-    cout<<endl;
-    for (int i = 0; i < n; i++)
-        cout<<ans[i]<<' ';
+int main() { 
+   ll n;
+   cin>>n;
+   vector<pair<ll,pair<ll,ll>>>vect;//index,start,end
+   for(ll i=0;i<n;i++){
+    ll x,y;
+    cin>>x>>y;
+    vect.push_back({i,{x,y}});
+   }  
+   sort(vect.begin(),vect.end(),cmp);
+   ordered_set oset1,oset2;
+   vector<ll>contains(n,0);
+   for(ll i=n-1;i>=0;i--){
+    auto it = vect[i];
+    ll index = it.first;
+    ll start = it.second.first;
+    ll end = it.second.second;
+    contains[index]=oset1.order_of_key({end,n});
+    oset1.insert({end,index});
+   }
+   vector<ll>containedby(n,0);
+   for(ll i=0;i<n;i++){
+    auto it = vect[i];
+    ll index = it.first;
+    ll start = it.second.first;
+    ll end = it.second.second;
+    containedby[index]=oset2.size()-oset2.order_of_key({end,-1});
+    oset2.insert({end,index});
+   }
+   for(ll i=0;i<n;i++){
+    cout<<contains[i]<<" ";
+   }
+   cout<<endl;
+   for(ll i=0;i<n;i++){
+    cout<<containedby[i]<<" ";
+   }
+   cout<<endl;
+    return 0; 
 }
