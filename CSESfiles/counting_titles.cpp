@@ -33,11 +33,6 @@ void solve(int x = 0, int y = 0, int mask = 0, int next_mask = 0) {
 
 signed main(){
     ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-    #ifdef LOCAL
-    freopen("input.txt", "r" , stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-    
     cin>>m>>n;
     dp[0][0] = 1;
 	for (int i = 0; i < n; i++) {
@@ -45,5 +40,5 @@ signed main(){
 			solve(i, 0, j, 0);
 		}
 	}    
-	cout<<dp[n][0];
+	cout<<dp[n][0]<<endl;
 }
